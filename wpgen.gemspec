@@ -14,8 +14,10 @@ Gem::Specification.new do |s|
   s.homepage    = 'http://rubygems.org/gems/wpgem'
   s.files       = [
     "lib/wpgen.rb",
-    "lib/wpgen/version.rb",
+    "lib/wpgen/command_line_interface.rb",
     "lib/wpgen/generator.rb",
+    "lib/wpgen/file_writer.rb",
+    "lib/wpgen/version.rb",
     "lib/templates/404.php",
     "lib/templates/archive.php",
     "lib/templates/comments.php",

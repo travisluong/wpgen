@@ -7,7 +7,7 @@ describe "wpgen" do
   describe "#new_theme" do
     it "should create initial theme directory and file system" do
     	FileUtils.rm_r "wpgen_test_theme" if File.directory? "wpgen_test_theme"
-      Wpgen::Generator.new_theme "wpgen_test_theme"
+      Wpgen::FileWriter.new_theme "wpgen_test_theme"
       Dir.glob("wpgen_test_theme/*").length.should eq 16
     end
   end
@@ -16,7 +16,7 @@ describe "wpgen" do
 
     it "accepts a parameter and returns php code for custom post type" do
       FileUtils.cd "wpgen_test_theme"
-      Wpgen::Generator.custom_post_type('employee')
+      Wpgen::FileWriter.write_custom_post_type('employee')
       File.open("post-type-employee.php", "r") do |f|
         f.read.should eq <<-EOF
 <?php
