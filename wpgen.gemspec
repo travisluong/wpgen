@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
     "lib/templates/page-template.php",
     "lib/templates/page.php",
     "lib/templates/post-type.php",
+    "lib/templates/register-sidebar.php",
     "lib/templates/screenshot.png",
     "lib/templates/search.php",
     "lib/templates/searchform.php",

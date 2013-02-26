@@ -40,6 +40,24 @@ EOF
       	(f.read =~ /require_once 'post-type-employee.php'/).should be_true
       end
     end
+  end
 
+  describe "#page_template" do
+    it "should create a page template" do
+      Wpgen::FileWriter.write_page_template('about')
+      File.open("page-template-about.php") do |f|
+        (f.read =~ /About/).should be_true
+      end
+    end
+  end
+
+  describe "#sidebar" do
+    it "should add sidebar code to functions.php" do
+      FileUtils.pwd
+      Wpgen::FileWriter.write_dynamic_sidebar('Footer widgets')
+      File.open("functions.php") do |f|
+        (f.read =~ /Footer widgets/).should be_true
+      end
+    end
   end
 end

@@ -14,11 +14,11 @@ module Wpgen
     end
 
     def page
-
+      FileWriter.write_page_template ARGV[1]
     end
 
     def sidebar
-
+      FileWriter.write_dynamic_sidebar ARGV[1]
     end
   end
 end

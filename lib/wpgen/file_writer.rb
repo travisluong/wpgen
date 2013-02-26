@@ -66,6 +66,17 @@ module Wpgen
     end
 
     def self.write_dynamic_sidebar sidebar_name
+      sidebar_code = Generator.dynamic_sidebar sidebar_name
+
+      File.open("functions.php", "r+") do |f|
+        functions_code = f.read
+        functions_code.gsub!(/\/\/ WPGEN register sidebars/, "// WPGEN register sidebars\n#{sidebar_code}")
+        f.close
+        FileUtils.remove_file "functions.php"
+        File.open("functions.php", "w") do |f|
+          f.puts functions_code
+        end
+      end
     end
 
     private

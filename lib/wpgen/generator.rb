@@ -20,5 +20,14 @@ module Wpgen
         php_code
       end
     end
+
+    def self.dynamic_sidebar sidebar_name
+      File.open("#{@@templates_dir}/register-sidebar.php") do |f|
+        php_code = f.read
+        php_code.gsub!(/WPGEN_Token/, sidebar_name.capitalize)
+        php_code.gsub!(/wpgen-token/, sidebar_name.downcase.gsub(/\s/, "-"))
+        php_code
+      end
+    end
   end
 end
