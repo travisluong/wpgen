@@ -52,8 +52,11 @@ module Wpgen
       File.open("functions.php", "r+") do |f|
         data = f.read
         data.gsub!(/\/\/ WPGEN custom post types/, "// WPGEN custom post types\nrequire_once 'post-type-#{type}.php'")
-        f.truncate(0)
-        f.puts data
+        f.close
+        FileUtils.remove_file "functions.php"
+        File.open("functions.php", "w") do |f|
+          f.puts data
+        end
       end
     end
 
