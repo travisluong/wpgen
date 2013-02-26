@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
   s.files       = [
     "lib/wpgen.rb",
     "lib/wpgen/version.rb",
+    "lib/wpgen/generator.rb",
     "lib/templates/404.php",
     "lib/templates/archive.php",
     "lib/templates/comments.php",
@@ -22,6 +23,7 @@ Gem::Specification.new do |s|
     "lib/templates/functions.php",
     "lib/templates/header.php",
     "lib/templates/index.php",
+    "lib/templates/page-template.php",
     "lib/templates/page.php",
     "lib/templates/post-type.php",
     "lib/templates/screenshot.png",
@@ -33,7 +35,9 @@ Gem::Specification.new do |s|
     "lib/templates/css/ie.css",
     "lib/templates/css/reset.css",
     "lib/templates/inc/meta.php",
-    "lib/templates/inc/nav.php"
+    "lib/templates/inc/nav.php",
+    "lib/templates/inc/paging.php",
+    "lib/templates/js/functions.js"
   ]
   s.executables << 'wpgen'
 end

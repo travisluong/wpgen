@@ -5,8 +5,10 @@ require 'wpgen'
 puts "wpgen executing"
 
 case ARGV[0]
-when "custom_post_type"
+when "post"
   Wpgen::Generator.custom_post_type ARGV[1]
+when "template"
+  Wpgen::Generator.page_template ARGV[1]
 when "new"
   Wpgen::Generator.new_theme ARGV[1]
 end
