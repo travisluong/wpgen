@@ -87,28 +87,18 @@ module Wpgen
     end
 
     def self.write_stylesheet
-      stylesheet = File.open("style.css", "a")
-      php_files = Dir.glob("*.php")
-      php_files = php_files - @@write_css_ignore
-      ids = []
-      c = []
-      puts "Extracting ids and selectors from:"
-      php_files.each do |php_file|
-        ids.concat(CssGen.get_ids(php_file))
-        c.concat(CssGen.get_classes(php_file))
-        puts "\t#{php_file}"
+      File.open("style.css", "a") do |stylesheet|
+        ids, c = get_all_css_selectors
+        stylesheet.puts CssGen.generate_id_css(ids)
+        stylesheet.puts CssGen.generate_class_css(c)
+        puts "Write selectors to style.css"
       end
-      ids.uniq!
-      c.uniq!
-      stylesheet.puts CssGen.generate_id_css(ids)
-      stylesheet.puts CssGen.generate_class_css(c)
-      puts "Write selectors to style.css"
     end
 
     def self.write_css file
       stylesheet = File.open("style.css", "a")
-      ids = CssGen.get_ids(file).uniq
-      c = CssGen.get_classes(file).uniq
+      ids = get_ids_from_file file
+      c = get_classes_from_file file
       stylesheet.puts CssGen.generate_id_css(ids)
       stylesheet.puts CssGen.generate_class_css(c)
       puts "Write selectors from #{file} to style.css"
@@ -125,6 +115,34 @@ module Wpgen
       FileUtils.cp "#{templates_dir}/#{file_path}", "#{folder_name}/#{file_path}"
       puts "Create file #{folder_name}/#{file_path}"
     end
+
+    def self.get_all_css_selectors
+      php_files = Dir.glob("*.php")
+      php_files = php_files - @@write_css_ignore
+      ids = []
+      c = []
+      puts "Extracting ids and selectors from:"
+      php_files.each do |php_file|
+        ids.concat(get_ids_from_file(php_file))
+        c.concat(get_classes_from_file(php_file))
+        puts "\t#{php_file}"
+      end
+      return ids.uniq, c.uniq
+    end
+
+    def self.get_ids_from_file file
+      File.open(file, "r") do |f|
+        CssGen.get_ids(f.read)
+      end
+    end
+
+    def self.get_classes_from_file file
+      File.open(file, "r") do |f|
+        CssGen.get_classes(f.read)
+      end
+    end
+
+
   end
 end
 

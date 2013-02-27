@@ -8,7 +8,6 @@ module Wpgen
         php_code = f.read
         php_code.gsub!(/WPGEN_Token/, type.capitalize)
         php_code.gsub!(/WPGEN_token/, type.downcase)
-        php_code
       end
     end
 
@@ -16,7 +15,6 @@ module Wpgen
       File.open("#{@@templates_dir}/page-template.php", "r") do |f|
         php_code = f.read
         php_code.gsub!(/WPGEN_Token/, template_name.capitalize)
-        php_code
       end
     end
 
@@ -25,7 +23,6 @@ module Wpgen
         php_code = f.read
         php_code.gsub!(/WPGEN_Token/, sidebar_name.capitalize)
         php_code.gsub!(/wpgen-token/, sidebar_name.downcase.gsub(/\s/, "-"))
-        php_code
       end
     end
   end
