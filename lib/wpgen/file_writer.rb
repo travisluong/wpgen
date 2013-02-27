@@ -79,6 +79,17 @@ module Wpgen
       end
     end
 
+    def self.write_css
+      stylesheet = File.open("style.css", "a")
+      php_files = Dir.glob("*.php")
+      php_files.each do |php_file|
+        stylesheet.puts CssGen.generate_class_css(CssGen.get_classes(php_file))
+      end
+      php_files.each do |php_file|
+        stylesheet.puts CssGen.generate_id_css(CssGen.get_ids(php_file))
+      end
+    end
+
     private
 
     def self.mkdir path

@@ -53,7 +53,6 @@ EOF
 
   describe "#sidebar" do
     it "should add sidebar code to functions.php" do
-      FileUtils.pwd
       Wpgen::FileWriter.write_dynamic_sidebar('Footer widgets')
       File.open("functions.php") do |f|
         (f.read =~ /Footer widgets/).should be_true
@@ -96,5 +95,14 @@ EOF
 EOF
     end
 
+    describe "FileWriter.write_css" do
+      before { Wpgen::FileWriter.write_css }
+      it "should append ids and classes to style.css" do
+        File.open("style.css", "r+") do |f|
+          styles = f.read
+          (styles =~ /entry/).should be_true
+        end
+      end
+    end
   end
 end
