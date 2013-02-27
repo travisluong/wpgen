@@ -25,6 +25,7 @@ module Wpgen
       "sidebar.php",
       "style.css"
     ]
+    @@write_css_ignore = ["functions.php"]
     @@templates_dir = File.expand_path("../templates", File.dirname(__FILE__))
 
     def self.new_theme folder_name
@@ -79,15 +80,28 @@ module Wpgen
       end
     end
 
-    def self.write_css
+    def self.write_stylesheet
       stylesheet = File.open("style.css", "a")
       php_files = Dir.glob("*.php")
+      php_files = php_files - @@write_css_ignore
+      ids = []
+      c = []
       php_files.each do |php_file|
-        stylesheet.puts CssGen.generate_class_css(CssGen.get_classes(php_file))
+        ids.concat(CssGen.get_ids(php_file))
+        c.concat(CssGen.get_classes(php_file))
       end
-      php_files.each do |php_file|
-        stylesheet.puts CssGen.generate_id_css(CssGen.get_ids(php_file))
-      end
+      ids.uniq!
+      c.uniq!
+      stylesheet.puts CssGen.generate_id_css(ids)
+      stylesheet.puts CssGen.generate_class_css(c)
+    end
+
+    def self.write_css file
+      stylesheet = File.open("style.css", "a")
+      ids = CssGen.get_ids(file).uniq
+      c = CssGen.get_classes(file).uniq
+      stylesheet.puts CssGen.generate_id_css(ids)
+      stylesheet.puts CssGen.generate_class_css(c)
     end
 
     private

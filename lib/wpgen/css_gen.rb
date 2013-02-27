@@ -3,7 +3,7 @@ module Wpgen
     def self.get_ids file
       File.open(file, "r") do |f|
         string = f.read
-        array = string.scan(/id="([^"]*)"/)
+        array = string.scan(/id="([^"<]*)"/)
         array.map { |id| id[0] }
       end
     end
@@ -11,8 +11,8 @@ module Wpgen
     def self.get_classes file
       File.open(file, "r") do |f|
         string = f.read
-        array = string.scan(/class="([^"]*)"/)
-        array.map { |id| id[0] }
+        array = string.scan(/class="([^"<]*)"/)
+        array.map { |c| c[0] }
       end
     end
 

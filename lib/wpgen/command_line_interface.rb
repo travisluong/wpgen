@@ -22,7 +22,11 @@ module Wpgen
     end
 
     def css
-      FileWriter.write_css
+      FileWriter.write_css ARGV[1]
+    end
+
+    def stylesheet
+      FileWriter.write_stylesheet
     end
   end
 end

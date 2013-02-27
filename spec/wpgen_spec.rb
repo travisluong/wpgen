@@ -96,7 +96,7 @@ EOF
     end
 
     describe "FileWriter.write_css" do
-      before { Wpgen::FileWriter.write_css }
+      before { Wpgen::FileWriter.write_stylesheet }
       it "should append ids and classes to style.css" do
         File.open("style.css", "r+") do |f|
           styles = f.read
