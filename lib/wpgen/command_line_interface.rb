@@ -27,6 +27,24 @@ module Wpgen
     def stylesheet
       FileWriter.write_stylesheet
     end
+
+    def method_missing(m, *args, &block)
+      help
+    end
+
+    def help
+      puts "WPGEN"
+      puts "Version: #{Wpgen::VERSION}"
+      puts "Author: Travis Luong"
+      puts ""
+      puts "Available commands:"
+      puts "wpgen new my_theme"
+      puts "wpgen post my_post"
+      puts "wpgen page my_page"
+      puts "wpgen sidebar my_sidebar"
+      puts "wpgen css file_name"
+      puts "wpgen stylesheet"
+    end
   end
 end
 

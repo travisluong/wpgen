@@ -3,4 +3,9 @@
 require 'wpgen'
 
 cli = Wpgen::CommandLineInterface.new
-cli.send ARGV[0]
+
+if ARGV[0].nil?
+  cli.help
+else
+  cli.send ARGV[0]
+end
