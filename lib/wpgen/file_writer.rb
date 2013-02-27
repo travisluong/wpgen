@@ -1,7 +1,6 @@
 module Wpgen
 
   class FileWriter
-    puts "class #{self} defined"
 
     @@initial_folder_list = ["css", "inc", "js"]
     @@initial_file_list = [
@@ -56,6 +55,9 @@ module Wpgen
           f.puts php_code
         end
       end
+
+      puts "Create file post-type-#{type}.php"
+      puts "Change functions.php"
     end
 
     def self.write_page_template template_name
@@ -64,6 +66,8 @@ module Wpgen
       File.open("page-template-#{template_name}.php", "w") do |f|
         f.puts php_code
       end
+
+      puts "Create file page-template-#{template_name}.php"
     end
 
     def self.write_dynamic_sidebar sidebar_name
@@ -78,6 +82,8 @@ module Wpgen
           f.puts functions_code
         end
       end
+
+      puts "Change file functions.php"
     end
 
     def self.write_stylesheet
@@ -86,14 +92,17 @@ module Wpgen
       php_files = php_files - @@write_css_ignore
       ids = []
       c = []
+      puts "Extracting ids and selectors from:"
       php_files.each do |php_file|
         ids.concat(CssGen.get_ids(php_file))
         c.concat(CssGen.get_classes(php_file))
+        puts "\t#{php_file}"
       end
       ids.uniq!
       c.uniq!
       stylesheet.puts CssGen.generate_id_css(ids)
       stylesheet.puts CssGen.generate_class_css(c)
+      puts "Write selectors to style.css"
     end
 
     def self.write_css file
@@ -102,6 +111,7 @@ module Wpgen
       c = CssGen.get_classes(file).uniq
       stylesheet.puts CssGen.generate_id_css(ids)
       stylesheet.puts CssGen.generate_class_css(c)
+      puts "Write selectors from #{file} to style.css"
     end
 
     private

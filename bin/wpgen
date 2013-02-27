@@ -2,7 +2,5 @@
 
 require 'wpgen'
 
-puts "wpgen executing"
-
 cli = Wpgen::CommandLineInterface.new
 cli.send ARGV[0]

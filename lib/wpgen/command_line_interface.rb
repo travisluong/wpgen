@@ -1,6 +1,5 @@
 module Wpgen
   class CommandLineInterface
-    puts "class #{self} defined"
     def initialize
 
     end

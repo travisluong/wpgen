@@ -1,7 +1,6 @@
 module Wpgen
 
   class Generator
-    puts "class #{self} defined"
     @@templates_dir = File.expand_path("../templates", File.dirname(__FILE__))
 
     def self.custom_post_type type
