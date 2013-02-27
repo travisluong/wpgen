@@ -25,7 +25,7 @@ module Wpgen
       "style.css"
     ]
     @@write_css_ignore = ["functions.php"]
-    @@templates_dir = File.expand_path("../templates", File.dirname(__FILE__))
+    @@templates_dir = File.expand_path("../../templates", File.dirname(__FILE__))
 
     def self.new_theme folder_name
       mkdir "#{folder_name}"

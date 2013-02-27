@@ -1,7 +1,7 @@
 module Wpgen
 
   class Generator
-    @@templates_dir = File.expand_path("../templates", File.dirname(__FILE__))
+    @@templates_dir = File.expand_path("../../templates", File.dirname(__FILE__))
 
     def self.custom_post_type type
       File.open("#{@@templates_dir}/post-type.php", "r") do |f|
