@@ -4,7 +4,7 @@ require 'wpgen'
 
 describe Wpgen::FileWriter do
 
-  FileUtils.rm_r "wpgen_test_theme" if File.directory? "wpgen_test_theme"
+  before(:all) { FileUtils.rm_r "wpgen_test_theme" if File.directory? "wpgen_test_theme" }
 
   context "#new_theme" do
 
