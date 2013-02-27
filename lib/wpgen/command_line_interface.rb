@@ -20,6 +20,10 @@ module Wpgen
     def sidebar
       FileWriter.write_dynamic_sidebar ARGV[1]
     end
+
+    def css
+      FileWriter.write_css
+    end
   end
 end
 

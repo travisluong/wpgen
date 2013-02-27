@@ -60,4 +60,41 @@ EOF
       end
     end
   end
+
+  describe "css_gen" do
+    it "#get_ids should get all ids in a file" do
+      Wpgen::CssGen.get_ids("header.php").should eq ["page-wrap", "header"]
+    end
+
+    it "#get_classes should get all classes in a file" do
+      Wpgen::CssGen.get_classes("page.php").should eq ["post", "entry"]
+    end
+
+    it "#generate_id_css should accept array and return css string" do
+      Wpgen::CssGen.generate_id_css(["page-wrap", "header"]).should eq <<-EOF
+#page-wrap {
+
+}
+
+#header {
+
+}
+
+EOF
+    end
+
+    it "#generate_class_css should accept array and return css string" do
+      Wpgen::CssGen.generate_class_css(["post", "entry"]).should eq <<-EOF
+.post {
+
+}
+
+.entry {
+
+}
+
+EOF
+    end
+
+  end
 end

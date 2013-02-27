@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
     "lib/wpgen/generator.rb",
     "lib/wpgen/file_writer.rb",
     "lib/wpgen/version.rb",
+    "lib/wpgen/css_gen.rb",
     "lib/templates/404.php",
     "lib/templates/archive.php",
     "lib/templates/comments.php",
