@@ -1,22 +1,35 @@
-wpgen
-=====
+#wpgen
 
-Installation:
+##Installation:
 
-`gem install wpgen`
+    gem install wpgen
 
-Available commands:
+##Commands:
 
-`wpgen new my_theme`
+Create new theme
 
-`wpgen post my_post`
+    $ wpgen new my_theme
+    
+Create custom post type
 
-`wpgen page my_page`
+    $ wpgen post my_post
+    
+Create page template
 
-`wpgen sidebar my_sidebar`
+    $ wpgen page my_page
 
-`wpgen css file_name`
+Create dynamic sidebar
 
-`wpgen stylesheet`
+    $ wpgen sidebar my_sidebar
 
-`wpgen help`
+Extract css selectors from file and append to style.css
+
+    $ wpgen css file_name
+
+Extract css selectors from all php files and append to style.css
+
+    $ wpgen stylesheet
+
+Help
+
+    $ wpgen help
