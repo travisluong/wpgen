@@ -1,10 +1,12 @@
 #wpgen
 
-##Installation:
+wpgen is a command line tool for generating blank WordPress themes.
+
+##Installation
 
     gem install wpgen
 
-##Commands:
+##Commands
 
 Create new theme
 
@@ -33,3 +35,6 @@ Extract css selectors from all php files and append to style.css
 Help
 
     $ wpgen help
+
+##License
+wpgen is released under the [MIT License](http://opensource.org/licenses/MIT).
